@@ -3,7 +3,7 @@ Dépot pour synchroniser ce que j'apprends lors des CTF
 
 ## Exploitation de binaires
 
-[x] Bufferoverflow  
+[x] Buffer overflow  
 [x] Ret2Win  
 [x] Shellcode Injection  
 [x] Ret2libc  
