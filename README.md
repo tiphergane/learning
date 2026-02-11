@@ -15,3 +15,6 @@ Dépot pour synchroniser ce que j'apprends lors des CTF
 ### Injection SQL
 
 ### SSTI (Server Side Template Injection)
+
+- [x] Python  
+- [x] Java  
