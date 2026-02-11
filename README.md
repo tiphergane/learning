@@ -13,6 +13,9 @@ Dépot pour synchroniser ce que j'apprends lors des CTF
 ## Injections
 
 ### Injection SQL
+- [ ] NoSQL
+- [ ] SQL
+- [ ] sqlite
 
 ### SSTI (Server Side Template Injection)
 
