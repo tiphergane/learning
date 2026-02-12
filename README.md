@@ -7,7 +7,7 @@ Dépot pour synchroniser ce que j'apprends lors des CTF
 - [x] Ret2Win  
 - [x] Shellcode Injection  
 - [x] Ret2libc  
-- [ ] Stack Canary  
+- [x] Stack Canary  
 - [ ] Use after free  
 
 ## Injections
