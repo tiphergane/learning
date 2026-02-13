@@ -88,6 +88,7 @@ afvd       # variables locales + offsets
 
 | Challenge | CTF | Technique | Fiche |
 |:---|:---|:---|:---|
+| bofbof | FCSC 2021 | BOF + Bypass Anti-Debug (écrasement sentinelle) | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
 | La Cohue | 404CTF 2023 | Stack Canary Bypass + Format String Leak | [canary_exploitation.md](Exploitation_binaire/canary_exploitation.md) |
 | L'Alchimiste | 404CTF 2023 | Use-After-Free + Function Pointer Hijack | [Use_After_Free.md](Exploitation_binaire/Use_After_Free.md) |
 | Gorfou en danger 1 | 404CTF 2025 | Ret2Win — Buffer Overflow simple | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
