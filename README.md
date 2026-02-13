@@ -9,6 +9,7 @@ Dépot pour synchroniser ce que j'apprends lors des CTF
 - [x] Ret2libc  
 - [x] Stack Canary  
 - [x] Use after free  
+- [x] Staged Payload  
 
 ## Injections
 
