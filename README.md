@@ -11,12 +11,13 @@
 .
 ├── Exploitation_binaire/
 │   ├── buffer_overflow_guide.md   ← index + techniques de base
-│   ├── cananary_exploitation.md   ← Stack Canary Bypass + Format String Leak
-│   ├── reet2libc.md               ← Ret2libc + ROP Chain + GOT Leak
+│   ├── canary_exploitation.md   ← Stack Canary Bypass + Format String Leak
+│   ├── ret2libc.md               ← Ret2libc + ROP Chain + GOT Leak
 │   ├── staged_shellcode.md        ← Stager 13 octets + mmap RWX
 │   └── Use_After_Free.md          ← UAF + Function Pointer Hijack
 ├── Injections/
 │   ├── SQL/
+│   │   └── sql_injection.md       ← Login Bypass, UNION, Blind, Time-based, WAF Bypass
 │   └── SSTI/
 │       └── SSTI.md                ← SSTI Python + Java
 └── README.md
@@ -31,11 +32,13 @@
 | Technique | Statut | Fiche |
 |:---|:---:|:---|
 | Buffer Overflow simple | ✅ | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
+| BOF + Condition de Victoire Cachée | ✅ | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
 | Ret2Win | ✅ | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
-| Stack Canary Bypass + Format String Leak | ✅ | [cananary_exploitation.md](Exploitation_binaire/cananary_exploitation.md) |
+| Shellcode Injection + Stack Leak | ✅ | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
+| Stack Canary Bypass + Format String Leak | ✅ | [canary_exploitation.md](Exploitation_binaire/canary_exploitation.md) |
 | Use-After-Free + Function Pointer Hijack | ✅ | [Use_After_Free.md](Exploitation_binaire/Use_After_Free.md) |
 | Staged Shellcode + mmap RWX | ✅ | [staged_shellcode.md](Exploitation_binaire/staged_shellcode.md) |
-| Ret2libc + ROP Chain + GOT Leak | ✅ | [reet2libc.md](Exploitation_binaire/reet2libc.md) |
+| Ret2libc + ROP Chain + GOT Leak | ✅ | [ret2libc.md](Exploitation_binaire/ret2libc.md) |
 
 ### Injections
 
@@ -43,7 +46,11 @@
 |:---|:---:|:---|
 | SSTI Python | ✅ | [SSTI.md](Injections/SSTI/SSTI.md) |
 | SSTI Java | ✅ | [SSTI.md](Injections/SSTI/SSTI.md) |
-| SQL | 🔲 | — |
+| SQL Login Bypass | ✅ | [sql_injection.md](Injections/SQL/sql_injection.md) |
+| SQL UNION-based | ✅ | [sql_injection.md](Injections/SQL/sql_injection.md) |
+| SQL Blind Boolean | ✅ | [sql_injection.md](Injections/SQL/sql_injection.md) |
+| SQL Time-based | ✅ | [sql_injection.md](Injections/SQL/sql_injection.md) |
+| SQL WAF Bypass | ✅ | [sql_injection.md](Injections/SQL/sql_injection.md) |
 | NoSQL | 🔲 | — |
 | SQLite | 🔲 | — |
 
@@ -53,7 +60,7 @@
 
 ```bash
 # Outils utilisés
-python3 -m pip install pwntools
+python3 -m pip install pwntools requests
 sudo pacman -S radare2 gdb    # Arch Linux
 
 # Vérifier les protections d'un binaire
@@ -65,11 +72,17 @@ aaa        # analyse complète
 afl        # liste des fonctions
 pdf @ sym.main
 afvd       # variables locales + offsets
+
+# Tester une injection SQL manuellement
+curl "http://cible.fr/search?id=1'"
+sqlmap -u "http://cible.fr/search?id=1" --dbs
 ```
 
 ---
 
 ## 📐 Méthodologie
+
+### Exploitation binaire
 
 ```
 1. checksec            → identifier les protections
@@ -80,22 +93,35 @@ afvd       # variables locales + offsets
 ```
 
 > ⚠️ **Principe de base :** ne jamais accepter une explication sans la vérifier dans radare2.
-> Les offsets, les registres, les tailles — tout se confirme dans le désassemblage.
+
+### Injection SQL
+
+```
+1. Identifier le point d'injection (tester ')
+2. Identifier le type de réponse (données / oui-non / rien / erreur)
+3. Fingerprinter la BDD (@@version, version(), sqlite_version())
+4. Cartographier (information_schema)
+5. Exfiltrer (UNION / Blind / Time-based selon le contexte)
+```
 
 ---
 
 ## 🏆 Challenges résolus
 
-| Challenge | CTF | Technique | Fiche |
-|:---|:---|:---|:---|
-| bofbof | FCSC 2021 | BOF + Condition de Victoire Cachée (valeur magique dans r2) | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
-| La Cohue | 404CTF 2023 | Stack Canary Bypass + Format String Leak | [cananary_exploitation.md](Exploitation_binaire/cananary_exploitation.md) |
-| L'Alchimiste | 404CTF 2023 | Use-After-Free + Function Pointer Hijack | [Use_After_Free.md](Exploitation_binaire/Use_After_Free.md) |
-| Gorfou en danger 1 | 404CTF 2025 | Ret2Win — Buffer Overflow simple | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
-| Gorfou en danger 2 | 404CTF 2025 | Shellcode Injection + Stack Leak (NX disabled) | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
-| Gorfou en danger 3 | 404CTF 2025 | Ret2libc + ROP Chain + GOT Leak | [ret2libc.md](Exploitation_binaire/ret2libc.md) |
-| Spaaaaaaace | 404CTF 2025 | Staged Shellcode + mmap RWX | [staged_shellcode.md](Exploitation_binaire/staged_shellcode.md) |
+| Challenge | CTF | Catégorie | Technique | Fiche |
+|:---|:---|:---:|:---|:---|
+| bofbof | FCSC 2021 | Pwn | BOF + Condition de Victoire Cachée | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
+| SQL Project 1 | Opération Kernel 2022 | Web | SQL Login Bypass | [sql_injection.md](Injections/SQL/sql_injection.md) |
+| SQL Project 2 | Opération Kernel 2022 | Web | SQL UNION-based + WAF Bypass | [sql_injection.md](Injections/SQL/sql_injection.md) |
+| SQL Project 3 | Opération Kernel 2022 | Web | SQL Blind Boolean + BINARY + hex encoding | [sql_injection.md](Injections/SQL/sql_injection.md) |
+| La Cohue | 404CTF 2023 | Pwn | Stack Canary Bypass + Format String Leak | [canary_exploitation.md](Exploitation_binaire/canary_exploitation.md) |
+| L'Alchimiste | 404CTF 2023 | Pwn | Use-After-Free + Function Pointer Hijack | [Use_After_Free.md](Exploitation_binaire/Use_After_Free.md) |
+| Extractor | Shutlock 2024 | Web | SQL Blind Boolean + WAF Bypass (case mixing) | [sql_injection.md](Injections/SQL/sql_injection.md) |
+| Gorfou en danger 1 | 404CTF 2025 | Pwn | Ret2Win — Buffer Overflow simple | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
+| Gorfou en danger 2 | 404CTF 2025 | Pwn | Shellcode Injection + Stack Leak (NX disabled) | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
+| Gorfou en danger 3 | 404CTF 2025 | Pwn | Ret2libc + ROP Chain + GOT Leak | [ret2libc.md](Exploitation_binaire/ret2libc.md) |
+| Spaaaaaaace | 404CTF 2025 | Pwn | Staged Shellcode + mmap RWX | [staged_shellcode.md](Exploitation_binaire/staged_shellcode.md) |
 
 ---
 
-*Arch Linux — pwntools — radare2 — GDB + GEF*
+*Arch Linux — pwntools — radare2 — GDB + GEF — requests — sqlmap*
