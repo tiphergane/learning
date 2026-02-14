@@ -11,8 +11,8 @@
 .
 ├── Exploitation_binaire/
 │   ├── buffer_overflow_guide.md   ← index + techniques de base
-│   ├── canary_exploitation.md     ← Stack Canary Bypass + Format String Leak
-│   ├── ret2libc.md                ← Ret2libc + ROP Chain + GOT Leak
+│   ├── cananary_exploitation.md   ← Stack Canary Bypass + Format String Leak
+│   ├── reet2libc.md               ← Ret2libc + ROP Chain + GOT Leak
 │   ├── staged_shellcode.md        ← Stager 13 octets + mmap RWX
 │   └── Use_After_Free.md          ← UAF + Function Pointer Hijack
 ├── Injections/
@@ -32,10 +32,10 @@
 |:---|:---:|:---|
 | Buffer Overflow simple | ✅ | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
 | Ret2Win | ✅ | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
-| Stack Canary Bypass + Format String Leak | ✅ | [canary_exploitation.md](Exploitation_binaire/canary_exploitation.md) |
+| Stack Canary Bypass + Format String Leak | ✅ | [cananary_exploitation.md](Exploitation_binaire/cananary_exploitation.md) |
 | Use-After-Free + Function Pointer Hijack | ✅ | [Use_After_Free.md](Exploitation_binaire/Use_After_Free.md) |
 | Staged Shellcode + mmap RWX | ✅ | [staged_shellcode.md](Exploitation_binaire/staged_shellcode.md) |
-| Ret2libc + ROP Chain + GOT Leak | ✅ | [ret2libc.md](Exploitation_binaire/ret2libc.md) |
+| Ret2libc + ROP Chain + GOT Leak | ✅ | [reet2libc.md](Exploitation_binaire/reet2libc.md) |
 
 ### Injections
 
@@ -88,8 +88,8 @@ afvd       # variables locales + offsets
 
 | Challenge | CTF | Technique | Fiche |
 |:---|:---|:---|:---|
-| bofbof | FCSC 2021 | BOF + Bypass Anti-Debug (écrasement sentinelle) | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
-| La Cohue | 404CTF 2023 | Stack Canary Bypass + Format String Leak | [canary_exploitation.md](Exploitation_binaire/canary_exploitation.md) |
+| bofbof | FCSC 2021 | BOF + Condition de Victoire Cachée (valeur magique dans r2) | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
+| La Cohue | 404CTF 2023 | Stack Canary Bypass + Format String Leak | [cananary_exploitation.md](Exploitation_binaire/cananary_exploitation.md) |
 | L'Alchimiste | 404CTF 2023 | Use-After-Free + Function Pointer Hijack | [Use_After_Free.md](Exploitation_binaire/Use_After_Free.md) |
 | Gorfou en danger 1 | 404CTF 2025 | Ret2Win — Buffer Overflow simple | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
 | Gorfou en danger 2 | 404CTF 2025 | Shellcode Injection + Stack Leak (NX disabled) | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
