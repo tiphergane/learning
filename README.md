@@ -11,14 +11,14 @@
 .
 ├── Exploitation_binaire/
 │   ├── buffer_overflow_guide.md   ← index + techniques de base
-│   ├── canary_exploitation.md   ← Stack Canary Bypass + Format String Leak
-│   ├── ret2libc.md               ← Ret2libc + ROP Chain + GOT Leak
+│   ├── canary_exploitation.md     ← Stack Canary Bypass + Format String Leak
+│   ├── ret2libc.md                ← Ret2libc + ROP Chain + GOT Leak
 │   ├── staged_shellcode.md        ← Stager 13 octets + mmap RWX
 │   └── Use_After_Free.md          ← UAF + Function Pointer Hijack
 ├── Injections/
+│   ├── NoSQL/
+│   │   └── nosql_injection.md     ← MongoDB $ne bypass + $regex blind
 │   ├── SQL/
-│   │   ├── sql_injection.md
-│   │   └── nosql_injection.md   ← MongoDB $ne bypass + $regex blind
 │   │   └── sql_injection.md       ← Login Bypass, UNION, Blind, Time-based, WAF Bypass
 │   └── SSTI/
 │       └── SSTI.md                ← SSTI Python + Java
@@ -53,7 +53,7 @@
 | SQL Blind Boolean | ✅ | [sql_injection.md](Injections/SQL/sql_injection.md) |
 | SQL Time-based | ✅ | [sql_injection.md](Injections/SQL/sql_injection.md) |
 | SQL WAF Bypass | ✅ | [sql_injection.md](Injections/SQL/sql_injection.md) |
-| NoSQL MongoDB — $ne Bypass + $regex Blind | ✅ | [nosql_injection.md](Injections/SQL/nosql_injection.md) |
+| NoSQL MongoDB — $ne Bypass + $regex Blind | ✅ | [nosql_injection.md](Injections/NoSQL/nosql_injection.md) |
 | SQLite | 🔲 | — |
 
 ---
@@ -120,9 +120,9 @@ sqlmap -u "http://cible.fr/search?id=1" --dbs
 | La Cohue | 404CTF 2023 | Pwn | Stack Canary Bypass + Format String Leak | [canary_exploitation.md](Exploitation_binaire/canary_exploitation.md) |
 | L'Alchimiste | 404CTF 2023 | Pwn | Use-After-Free + Function Pointer Hijack | [Use_After_Free.md](Exploitation_binaire/Use_After_Free.md) |
 | Extractor | Shutlock 2024 | Web | SQL Blind Boolean + WAF Bypass (case mixing) | [sql_injection.md](Injections/SQL/sql_injection.md) |
-| Find me 1 | ECW 2022 | Web | NoSQL MongoDB — Login Bypass ($ne) | [nosql_injection.md](Injections/SQL/nosql_injection.md) |
-| Find me 2 | ECW 2022 | Web | NoSQL MongoDB — Blind $regex (username + password leak) | [nosql_injection.md](Injections/SQL/nosql_injection.md) |
-| Find me 3 | ECW 2022 | Web | NoSQL MongoDB — Blind $regex avec préfixe ciblé | [nosql_injection.md](Injections/SQL/nosql_injection.md) |
+| Find me 1 | ECW 2022 | Web | NoSQL MongoDB — Login Bypass ($ne) | [nosql_injection.md](Injections/NoSQL/nosql_injection.md) |
+| Find me 2 | ECW 2022 | Web | NoSQL MongoDB — Blind $regex (username + password leak) | [nosql_injection.md](Injections/NoSQL/nosql_injection.md) |
+| Find me 3 | ECW 2022 | Web | NoSQL MongoDB — Blind $regex avec préfixe ciblé | [nosql_injection.md](Injections/NoSQL/nosql_injection.md) |
 | Gorfou en danger 1 | 404CTF 2025 | Pwn | Ret2Win — Buffer Overflow simple | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
 | Gorfou en danger 2 | 404CTF 2025 | Pwn | Shellcode Injection + Stack Leak (NX disabled) | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
 | Gorfou en danger 3 | 404CTF 2025 | Pwn | Ret2libc + ROP Chain + GOT Leak | [ret2libc.md](Exploitation_binaire/ret2libc.md) |
