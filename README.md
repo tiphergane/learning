@@ -12,7 +12,8 @@
 ├── Exploitation_binaire/
 │   ├── buffer_overflow_guide.md   ← index + techniques de base
 │   ├── canary_exploitation.md     ← Stack Canary Bypass + Format String Leak
-│   ├── ret2libc.md                ← Ret2libc + ROP Chain + GOT Leak
+│   ├── ret2libc.md                ← Ret2libc simple (binaire dynamique)
+│   ├── ret2libc_rop.md            ← Ret2libc + ROP Chain + GOT Leak + binaire statique
 │   ├── staged_shellcode.md        ← Stager 13 octets + mmap RWX
 │   └── Use_After_Free.md          ← UAF + Function Pointer Hijack
 ├── Injections/
@@ -40,7 +41,8 @@
 | Stack Canary Bypass + Format String Leak | ✅ | [canary_exploitation.md](Exploitation_binaire/canary_exploitation.md) |
 | Use-After-Free + Function Pointer Hijack | ✅ | [Use_After_Free.md](Exploitation_binaire/Use_After_Free.md) |
 | Staged Shellcode + mmap RWX | ✅ | [staged_shellcode.md](Exploitation_binaire/staged_shellcode.md) |
-| Ret2libc + ROP Chain + GOT Leak | ✅ | [ret2libc.md](Exploitation_binaire/ret2libc.md) |
+| Ret2libc + ROP Chain + GOT Leak | ✅ | [ret2libc_rop.md](Exploitation_binaire/ret2libc_rop.md) |
+| Ret2libc binaire statique (system + execve) | ✅ | [ret2libc_rop.md](Exploitation_binaire/ret2libc_rop.md) |
 
 ### Injections
 
@@ -113,6 +115,7 @@ sqlmap -u "http://cible.fr/search?id=1" --dbs
 | Challenge | CTF | Catégorie | Technique | Fiche |
 |:---|:---|:---:|:---|:---|
 | poney | FCSC 2020 | Pwn | Ret2Win + alignement stack RSP (gadget ret) | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
+| xortp | FCSC 2025 | Pwn | BOF + ret2libc/ROP execve (binaire statique, faux positif canary checksec) | [ret2libc_rop.md](Exploitation_binaire/ret2libc_rop.md) |
 | Aarchibald | FCSC 2019 | Pwn | BOF simple — écrasement de trigger + XOR password (AArch64) | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
 | bofbof | FCSC 2021 | Pwn | BOF + Condition de Victoire Cachée | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
 | SQL Project 1 | Opération Kernel 2022 | Web | SQL Login Bypass | [sql_injection.md](Injections/SQL/sql_injection.md) |
@@ -126,7 +129,7 @@ sqlmap -u "http://cible.fr/search?id=1" --dbs
 | Find me 3 | ECW 2022 | Web | NoSQL MongoDB — Blind $regex avec préfixe ciblé | [nosql_injection.md](Injections/NoSQL/nosql_injection.md) |
 | Gorfou en danger 1 | 404CTF 2025 | Pwn | Ret2Win — Buffer Overflow simple | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
 | Gorfou en danger 2 | 404CTF 2025 | Pwn | Shellcode Injection + Stack Leak (NX disabled) | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
-| Gorfou en danger 3 | 404CTF 2025 | Pwn | Ret2libc + ROP Chain + GOT Leak | [ret2libc.md](Exploitation_binaire/ret2libc.md) |
+| Gorfou en danger 3 | 404CTF 2025 | Pwn | Ret2libc + ROP Chain + GOT Leak | [ret2libc_rop.md](Exploitation_binaire/ret2libc_rop.md) |
 | Spaaaaaaace | 404CTF 2025 | Pwn | Staged Shellcode + mmap RWX | [staged_shellcode.md](Exploitation_binaire/staged_shellcode.md) |
 
 ---
