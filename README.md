@@ -130,6 +130,7 @@ sqlmap -u "http://cible.fr/search?id=1" --dbs
 | Gorfou en danger 1 | 404CTF 2025 | Pwn | Ret2Win — Buffer Overflow simple | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
 | Gorfou en danger 2 | 404CTF 2025 | Pwn | Shellcode Injection + Stack Leak (NX disabled) | [buffer_overflow_guide.md](Exploitation_binaire/buffer_overflow_guide.md) |
 | Gorfou en danger 3 | 404CTF 2025 | Pwn | Ret2libc + ROP Chain + GOT Leak | [ret2libc_rop.md](Exploitation_binaire/ret2libc_rop.md) |
+| Puissance 4 | FCSC 2026 | Pwn | Ret2libc + GOT leak manuel via ROP (sans fonction debug) | [ret2libc_rop.md](Exploitation_binaire/ret2libc_rop.md) |
 | Spaaaaaaace | 404CTF 2025 | Pwn | Staged Shellcode + mmap RWX | [staged_shellcode.md](Exploitation_binaire/staged_shellcode.md) |
 
 ---
